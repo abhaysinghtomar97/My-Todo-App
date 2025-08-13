@@ -23,3 +23,7 @@ to Create New DB File :-
 
     if debug =True == >Exact Error Will Show  => for developers
     if debug =False ==> Random "Internal Error" => for users
+
+Template inheritance => 
+
+pip install gunicorn => 
