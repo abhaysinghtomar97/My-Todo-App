@@ -1,36 +1,36 @@
-
 {% extends 'base.html' %}
 {% block title %}Home{% endblock title %}
 {% block body %}
-  
 
-  
 
-  <!-- main form  -->
-  <form action="/" method="POST" class="p-5">
-    <div class="form-group">
-      <label for="title">TODO Title</label>
-      <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
 
-    </div>
-    <div class="form-group">
-      <label for="Desciption">TODO Desciption</label>
-      <input type="text" name="desc" class="form-control" id="Desciption">
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn my-3 btn-primary">Submit</button>
 
-    <!-- Table  -->
+<!-- main form  -->
+<form action="/" method="POST" class="p-5">
+  <div class="form-group">
+    <label for="title">TODO Title</label>
+    <input type="text" name="title" class="form-control" id="title" aria-describedby="emailHelp">
 
-    {% if allTodo|length == 0 %}
-    <div class="alert alert-dark" role="alert">
-      No Todos found , Please Add 1st Task Now!
-    </div>
-    {% else %}
-    <table class="table">
+  </div>
+  <div class="form-group">
+    <label for="Desciption">TODO Desciption</label>
+    <input type="text" name="desc" class="form-control" id="Desciption">
+  </div>
+  <div class="form-group form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <button type="submit" class="btn my-3 btn-primary">Submit</button>
+
+  <!-- Table  -->
+
+  {% if allTodo|length == 0 %}
+  <div class="alert alert-dark" role="alert">
+    No Todos found , Please Add 1st Task Now!
+  </div>
+  {% else %}
+  <div class="table-responsive">
+    <table class="table w-90 my-2">
       <thead>
         <tr>
           <th scope="col">SNo</th>
@@ -47,21 +47,20 @@
           <th scope="row">{{loop.index}}</th>
           <td>{{todo.title}}</td>
           <td>{{todo.desc}}</td>
-          <td>{{todo.date_created}}</td>
+          <td>{{todo.date_created.strftime("%d-%m %H:%M")}}</td>
           <td>
-            <a href="/update/{{todo.sno}}"><button type="button"
-                class="btn btn-outline-dark btn-sm mx-1">Update</button></a>
-            <a href="/delete/{{todo.sno}}"><button type="button"
-                class="btn  btn-outline-dark btn-sm mx-1">Delete</button></a>
+            <a href="/update/{{todo.sno}}" class="btn btn-update">Update</a>
+            <a href="/delete/{{todo.sno}}" class="btn btn-delete">Delete</a>
           </td>
         </tr>
 
         {% endfor %}
       </tbody>
     </table>
-    {% endif %}
+  </div>
+  {% endif %}
 
 
-  </form>
+</form>
 
 {% endblock body %}
